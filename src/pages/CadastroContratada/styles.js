@@ -7,6 +7,22 @@ export const Container = styled.div`
   background: var(--blue);
 `;
 
+export const SelecionarOpcao = styled.div`
+width: 100%;
+background: var(--yellow);
+text-align: center;
+
+input {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+span {
+  font-size: 3vh;
+  color: var(--gray);
+}
+`
+
 export const Title = styled.div`
   padding-top: 8vh;
   @media screen and (min-width: 1024px){

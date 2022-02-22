@@ -1,15 +1,12 @@
 import React from 'react';
 import { CadastroContratadaP1 } from './pages/P1CadastroContratada';
-import { CadastroContratanteP1 } from './pages/P1CadastroContratante';
 import { CadastroContratada } from './pages/CadastroContratada';
-import { CadastroContratante } from './pages/CadastroContratante';
 import { Home } from './pages/Home';
 import { Proposta, PropostaContratada } from './pages/PropostaContratada';
 import { PerfilContratada } from './pages/PerfilContratada';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './styles/global.css';
 import { LoginContratado } from './pages/LoginContratado';
-import { LoginContratante } from './pages/LoginContratante';
 import { DetalhesProposta } from './pages/DetalhesPropostaContratada';
 import { Busca } from './pages/BuscaContratante';
 import { CalendarioContratada } from './pages/CalendarioContratada';
@@ -21,7 +18,6 @@ import { ChatContratante } from './pages/ChatContratante';
 import { BuscaBaba } from './pages/BuscaBaba';
 import { BuscaCozinheira } from './pages/BuscaCozinheira';
 import { BuscaDiarista } from './pages/BuscaDiarista';
-import { ModalRedirectLogin } from './pages/ModalRedirectLogin';
 import { ResultadoCozinheira } from './pages/ResultadoCozinheira';
 import { ModalProposta } from './pages/ModalProposta';
 
@@ -35,23 +31,13 @@ function App() {
           </Route>
         </Switch>
         <Switch>
-          <Route exact path="/loginContratado">
+          <Route exact path="/login">
             <LoginContratado />
           </Route>
         </Switch>
         <Switch>
-          <Route exact path="/loginContratante">
-            <LoginContratante />
-          </Route>
-        </Switch>
-        <Switch>
-          <Route exact path="/cadastro/contratada">
+          <Route exact path="/cadastro/usuario">
             <CadastroContratadaP1 />
-          </Route>
-        </Switch>
-        <Switch>
-          <Route exact path="/cadastro/contratante">
-            <CadastroContratanteP1 />
           </Route>
         </Switch>
         <Switch>
@@ -118,11 +104,6 @@ function App() {
         <Switch>
           <Route exact path="/buscaBaba">
             <BuscaBaba />
-          </Route>
-        </Switch>
-        <Switch>
-          <Route exact path="/ModalRedirectLogin">
-            <ModalRedirectLogin />
           </Route>
         </Switch>
         <Switch>

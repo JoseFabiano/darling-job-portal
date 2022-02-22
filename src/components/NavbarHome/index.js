@@ -7,7 +7,7 @@ export const NavbarHome = () => {
     <>
       <Background>
         <img src="logo.svg" alt="Logo do projeto" id="logo-projeto" />
-        <Link to="/ModalRedirectLogin">
+        <Link to="/login">
           <img src="user-blue.svg" alt="Logo do usuário" id="logo-usuario" />
         </Link>
       </Background>

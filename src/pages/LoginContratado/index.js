@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import api from '../../api';
 import { Navbar } from '../../components/Navbar';
-import apiContratada from '../../apiContratada';
 import { DashBoard } from '../DashBoard';
 import {
   Box,
@@ -25,7 +24,7 @@ import {
 } from 'react-router-dom';
 
 export const LoginContratado = () => {
-  const [email, setEmail] = useState('');
+  const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
 
   const history = useHistory();
@@ -33,23 +32,20 @@ export const LoginContratado = () => {
     history.push('/dash');
   };
 
-  async function loginContratado(email, senha) {
+  async function loginContratado() {
     try {
-      await api.get(
-        `http://localhost:8080/darlingjob/contratado/login/${email}/${senha}`
-      );
-      const { data } = await api.get(
-        `http://localhost:8080/darlingjob/contratado/logado/${email}/${senha}`
-      );
-      localStorage.setItem('contratado', JSON.stringify(data));
-      if (data.logado == true) {
-        console.log('Usuário identificado. Redirecionando para a página...');
-        handler();
-      } else {
-        return alert('Não foi possivel redirecionar...');
-      }
+      api.get('/usuarios/autenticar', {
+        nome: nome,
+        senha: senha
+        })
+      .then((resposta) => {
+        alert('Login feito!');
+      })
+      .catch((erro) => {
+        alert('Erro ao logar!');
+      });
     } catch {
-      alert('Email ou senha inválido.');
+
     }
   }
 
@@ -72,7 +68,7 @@ export const LoginContratado = () => {
               <BoxForm>
                 <h1>Cadastrar</h1>
                 <h2>Não possui conta?</h2>
-                <Link to="/cadastro/contratada" style={{ textDecoration: 'none' }}>
+                <Link to="/cadastro/usuario" style={{ textDecoration: 'none' }}>
                   <button>Criar sua conta</button>
                 </Link>
               </BoxForm>
@@ -83,10 +79,10 @@ export const LoginContratado = () => {
               <h2>OU</h2>
               <BoxForm1>
                 <BoxInput>
-                  <h3>Email</h3>
+                  <h3>Nome</h3>
                   <input
                     type="text"
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setNome(e.target.value)}
                     placeholder=""
                   ></input>
                 </BoxInput>
@@ -98,7 +94,7 @@ export const LoginContratado = () => {
                     placeholder=""
                   ></input>
                 </BoxInput>
-                <button onClick={(e) => loginContratado(email, senha)}>
+                <button onClick={(e) => loginContratado()}>
                   Entrar
                 </button>
               </BoxForm1>

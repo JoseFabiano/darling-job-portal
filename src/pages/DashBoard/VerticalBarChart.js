@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import apiContrato from '../../apiContrato';
+import api from '../../api';
 
 const data = {
   labels: ['07/11', '08/11', '09/11', '10/11', '11/11', '12/11'],
@@ -39,7 +39,7 @@ function VerticalBar() {
 
   useEffect(() => {
     async function chartData(){
-      const resposta = await apiContrato.get("")
+      const resposta = await api.get("")
       setChartData(resposta.data)
       console.log(resposta.data)
     }

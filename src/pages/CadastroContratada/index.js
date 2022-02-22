@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import api from '../../apiContratada';
+import api from '../../api';
 import { Navbar } from '../../components/Navbar';
 import { Respon } from '../../components/Respon';
-import { FakeDiv } from '../CadastroContratante/styles';
 import InputMask from 'react-awesome-mask-input';
 import {
   BoxButton,
@@ -21,6 +20,7 @@ import {
   Form,
   Gender,
   Line,
+  SelecionarOpcao,
   Title,
   CheckWords,
 } from './styles';
@@ -80,14 +80,8 @@ export const CadastroContratada = (props) => {
 
   async function cadastrarContratado(e) {
     e.preventDefault();
-    console.log(dtServicoDigitado.toString());    
-    console.log(dtServicoDigitado + "ESSE TESTE");
 
-    console.log(tipoServico);
-    console.log("TESTE2" + tipoServico)
-
-
-    api.post('http://localhost:8080/darlingjob/contratado', {
+    api.post('http://localhost:8080/usuarios', {
         email: props.email,
         nome: props.nome,
         cpf: cpfDigitado,
@@ -96,40 +90,32 @@ export const CadastroContratada = (props) => {
         dataNascimento: dtNascimentoDigitado,
         telefoneFixo: telefoneDigitado,
         telefoneCelular: celularDigitado,
-        cep: cep,
         senha: props.senha,
         tipoServico: tipoServico,
-        qtdDiasDisponiveis: dtServicoDigitado,
-        trabFeriados: trabFeriadosDigitado,
+        diasDisponiveis: dtServicoDigitado,
+        trabalhaFeriados: trabFeriadosDigitado,
         horarioInicio: hrInicioDigitado,
         horarioFim: hrTerminoDigitado,
         horarioFeriadoInicio: hrInicioFeriadosDigitado,
         horarioFeriadoFim: hrTerminoFeriadosDigitado,
+        endereco:  {
+          endereco: rua,
+          cep: cep,
+          complemento: complementoDigitado,
+          numero: numeroDigitado,
+          bairro: bairro,
+          pais: paisDigitado,
+          estado: estado,
+          cidade: cidade
+        }
       })
       .then((resposta) => {
         alert('Contratado cadastrado!');
+        handler();
         console.log(api.data);
       })
       .catch((erro) => {
         console.log('Erro ao cadastrar contratado!', api.data);
-      });
-
-    api.post('http://localhost:8080/darlingjob/endereco', {
-        endereco: rua,
-        complemento: complementoDigitado,
-        numero: numeroDigitado,
-        bairro: bairro,
-        pais: paisDigitado,
-        estado: estado,
-        cidade: cidade,
-      })
-      .then((resposta) => {
-        alert('Endereço cadastrado!');
-        handler();
-      })
-      .catch((erro) => {
-        alert('Erro ao cadastrar endereço!');
-        console.log(api);
       });
 
     console.log(props);
@@ -139,6 +125,36 @@ export const CadastroContratada = (props) => {
     <>
       <Navbar />
       <Container>
+      <form>
+          <SelecionarOpcao id="group1">
+          <label>
+           <span>Contratante </span>
+              <input
+                type="radio"
+                id="contratante"
+                name="opcao"
+                onChange={() =>
+                  document.getElementById('contratante').checked
+                    ?  document.getElementById('teste').style.display = 'none'
+                    : null
+                }                
+              />
+          </label>
+          <label>
+              <input
+                type="radio"
+                id="contratado"
+                onChange={() =>
+                  document.getElementById('contratado').checked
+                    ?  document.getElementById('teste').style.display = 'block'
+                    : null
+                }      
+                name="opcao"
+              />
+              <span> Contratado</span>
+            </label>
+          </SelecionarOpcao>
+      </form>
         <Title>
           <h3>Dados pessoais</h3>
           <Line />
@@ -645,6 +661,7 @@ export const CadastroContratada = (props) => {
             ></input>
           </BoxInput2>
         </BoxForm>
+        <div id='teste' style={{ display: 'block' }}>
         <Title>
           <h3 id="titulo2">Detalhes do serviço</h3>
         </Title>
@@ -816,6 +833,7 @@ export const CadastroContratada = (props) => {
             ></InputMask>
           </BoxInput3>
         </BoxForm>
+        </div>
         <Title>
           <h3 id="titulo3">Termo de Responsabilidade</h3>
         </Title>
@@ -826,7 +844,6 @@ export const CadastroContratada = (props) => {
             <button id="b1">Discordo</button>
           </BoxButton>
         </BoxForm>
-        <FakeDiv />
       </Container>
     </>
   );

@@ -5,7 +5,7 @@ import api from '../../api';
 
 
 export const NavbarMenuContratada = () => {
-  var usuario = localStorage.getItem('contratado');
+  var usuario = localStorage.getItem('profissional');
   var contratado = JSON.parse(usuario);
   const history = useHistory();
   const handler = () => {
