@@ -17,7 +17,7 @@ export const BuscaDiarista = () => {
   useEffect(() => {
     async function buscarServico() {
       const { data } = await api.get(
-        `http://localhost:8080/darlingjob/profissional/buscar-servico/${diarista}`
+        `http://localhost:8080/profissional/buscar-servico/${diarista}`
       );
       SetUsuarioBuscado(data);
       console.log(data);
