@@ -56,7 +56,7 @@ export const CadastroContratada = (props) => {
 
   const history = useHistory();
   const handler = () => {
-    history.push('/loginContratado');
+    history.push('/login');
   };
 
   async function pesquisacep(valor) {
@@ -87,17 +87,17 @@ export const CadastroContratada = (props) => {
         cpf: cpfDigitado,
         rg: rgDigitado,
         genero: sexoDigitado,
-        dataNascimento: dtNascimentoDigitado,
-        telefoneFixo: telefoneDigitado,
-        telefoneCelular: celularDigitado,
+        data_nascimento: dtNascimentoDigitado,
+        telefone_fixo: telefoneDigitado,
+        telefone_celular: celularDigitado,
         senha: props.senha,
-        tipoServico: tipoServico,
-        diasDisponiveis: dtServicoDigitado,
+        tipo_servico: tipoServico,
         trabalhaFeriados: trabFeriadosDigitado,
-        horarioInicio: hrInicioDigitado,
-        horarioFim: hrTerminoDigitado,
-        horarioFeriadoInicio: hrInicioFeriadosDigitado,
-        horarioFeriadoFim: hrTerminoFeriadosDigitado,
+        horario_inicio_dia: hrInicioDigitado,
+        horarioFimDia: hrTerminoDigitado,
+        horario_feriado_inicio: hrInicioFeriadosDigitado,
+        horario_feriado_fim: hrTerminoFeriadosDigitado,
+        role: "teste",
         endereco:  {
           endereco: rua,
           cep: cep,

@@ -23,7 +23,7 @@ export const BuscaCozinheira = (props) => {
   useEffect(() => {
     async function buscarServico() {
       const { data } = await api.get(
-        `http://localhost:8080/darlingjob/profissional/buscar-nome/${cozinheira}`
+        `http://localhost:8080/darlingjob/profissional/buscar-servico/${cozinheira}`
       );
       SetUsuarioBuscado(data);
       console.log(data);
