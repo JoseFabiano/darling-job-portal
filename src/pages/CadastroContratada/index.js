@@ -81,7 +81,8 @@ export const CadastroContratada = (props) => {
   async function cadastrarContratado(e) {
     e.preventDefault();
 
-    api.post('http://localhost:8080/usuarios', {
+    api
+      .post('http://localhost:8080/usuarios', {
         email: props.email,
         nome: props.nome,
         cpf: cpfDigitado,
@@ -97,8 +98,8 @@ export const CadastroContratada = (props) => {
         horarioFimDia: hrTerminoDigitado,
         horario_feriado_inicio: hrInicioFeriadosDigitado,
         horario_feriado_fim: hrTerminoFeriadosDigitado,
-        role: "teste",
-        endereco:  {
+        role: 'teste',
+        endereco: {
           endereco: rua,
           cep: cep,
           complemento: complementoDigitado,
@@ -106,8 +107,8 @@ export const CadastroContratada = (props) => {
           bairro: bairro,
           pais: paisDigitado,
           estado: estado,
-          cidade: cidade
-        }
+          cidade: cidade,
+        },
       })
       .then((resposta) => {
         alert('Contratado cadastrado!');
@@ -125,36 +126,36 @@ export const CadastroContratada = (props) => {
     <>
       <Navbar />
       <Container>
-      <form>
+        <form>
           <SelecionarOpcao id="group1">
-          <label>
-           <span>Contratante </span>
+            <label>
+              <span>Contratante </span>
               <input
                 type="radio"
                 id="contratante"
                 name="opcao"
                 onChange={() =>
                   document.getElementById('contratante').checked
-                    ?  document.getElementById('teste').style.display = 'none'
+                    ? (document.getElementById('teste').style.display = 'none')
                     : null
-                }                
+                }
               />
-          </label>
-          <label>
+            </label>
+            <label>
               <input
                 type="radio"
                 id="contratado"
                 onChange={() =>
                   document.getElementById('contratado').checked
-                    ?  document.getElementById('teste').style.display = 'block'
+                    ? (document.getElementById('teste').style.display = 'block')
                     : null
-                }      
+                }
                 name="opcao"
               />
               <span> Contratado</span>
             </label>
           </SelecionarOpcao>
-      </form>
+        </form>
         <Title>
           <h3>Dados pessoais</h3>
           <Line />
@@ -661,178 +662,227 @@ export const CadastroContratada = (props) => {
             ></input>
           </BoxInput2>
         </BoxForm>
-        <div id='teste' style={{ display: 'block' }}>
-        <Title>
-          <h3 id="titulo2">Detalhes do serviço</h3>
-        </Title>
-        <BoxForm>
-          <CheckService>
-            <label>
-              <input 
-              type="radio" 
-              id="baba" 
-              name="service" 
-              onChange={() => document.getElementById('baba').checked ? setTipoServico("Babá") : null} />
-              <span>Babá</span>
-            </label>
-            <label>
-              <input 
-              type="radio" 
-              id="diarista" 
-              name="service" 
-              onChange={() => document.getElementById('diarista').checked ? setTipoServico("Diarista") : null} />
-             <span> Diarista</span>
-            </label>
-            <label>
-              <input 
-              type="radio" 
-              id="cozinheira" 
-              name="service" 
-              onChange={() => document.getElementById('cozinheira').checked ? setTipoServico("Cozinheira") : null} />
-            <span> Cozinheira</span>
-            </label>
-          </CheckService>
-        </BoxForm>
-        <BoxForm>
-          <BoxInput3>
-            <h3>*Horário inicio:</h3>
-            <InputMask
-              type="text"
-              name="time"
-              mask={['99:99']}
-              onChange={(e) => setHrInicio(e.target.value)}
-              placeholder="Hora de início"
-            ></InputMask>
-          </BoxInput3>
-          <BoxInput3>
-            <h3 id="hTerminT">*Horário termino:</h3>
-            <InputMask
-              id="hTermino"
-              type="text"
-              name="time"
-              mask={['99:99']}
-              onChange={(e) => setHrTermino(e.target.value)}
-              placeholder=" Hora de término"
-            ></InputMask>
-          </BoxInput3>
-        </BoxForm>
-        <BoxForm>
-          <CheckSemana>
-            <label>
-              <input 
-              type="checkbox" 
-              id="segunda" 
-              name="semana"
-              onChange={() => document.getElementById('segunda').checked ? setDtServico(dtServico => [...dtServico, "Segunda"]) : null} />
-            <span>  Segunda</span>
-            </label>
-            <label>
-              <input 
-              type="checkbox" 
-              id="terca" 
-              name="semana"
-              onChange={() => document.getElementById('terca').checked ? setDtServico(dtServico => [...dtServico, "Terça"]) : null } />
-            <span>  Terça</span>
-            </label>
-            <label>
-              <input 
-              type="checkbox" 
-              id="quarta" 
-              name="semana" 
-              onChange={() => document.getElementById('quarta').checked ? setDtServico(dtServico => [...dtServico, "Quarta"]) : null } />
-            <span>  Quarta</span>
-            </label>
-            <label>
-              <input 
-              type="checkbox" 
-              id="quinta" 
-              name="semana"
-              onChange={() => document.getElementById('quinta').checked ? setDtServico(dtServico => [...dtServico, "Quinta"]) : null } />
-            <span>  Quinta</span>
-            </label>
-            <label>
-              <input 
-              type="checkbox" 
-              id="sexta" 
-              name="semana" 
-              onChange={() => document.getElementById('sexta').checked ? setDtServico(dtServico => [...dtServico, "Sexta"]) : null } />
-           <span> Sexta</span>
-            </label>
-            <label>
-              <input 
-              type="checkbox" 
-              id="sabado" 
-              name="semana" 
-              onChange={() => document.getElementById('sabado').checked ? setDtServico(dtServico => [...dtServico, "Sábado"]) : null} />
-            <span>  Sabádo</span>
-            </label>
-            <label>
-              <input 
-              type="checkbox" 
-              id="domingo" 
-              name="semana" 
-              onChange={() => document.getElementById('domingo').checked ? setDtServico(dtServico => [...dtServico, "Domingo"]) : null} />
-            <span>  Domingo</span>
-            </label>
-          </CheckSemana>
-        </BoxForm>
-        <BoxForm1>
-          <Title id="titulo5">
-            <h3>Trabalha em feriados ?</h3>
+        <div id="teste" style={{ display: 'block' }}>
+          <Title>
+            <h3 id="titulo2">Detalhes do serviço</h3>
           </Title>
-          <CheckFeriado>
-            <label>
-              <input
-                type="radio"
-                id="simTrabFeriados"
-                onChange={() =>
-                  document.getElementById('simTrabFeriados').checked
-                    ? setTrabFeriados('Sim')
-                    : null
-                }
-                name="feriado"
-              />
-            <span>Sim</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                id="naoTrabFeriados"
-                onChange={() =>
-                  document.getElementById('naoTrabFeriados').checked
-                    ? setTrabFeriados('Não')
-                    : null
-                }
-                name="feriado"
-              />
-            <span>Não</span>
-            </label>
-          </CheckFeriado>
-        </BoxForm1>
-        <BoxForm>
-          <BoxInput3>
-            <h3>*Horário inicio:</h3>
-            <InputMask
-              type="text"
-              name="time"
-              mask={['99:99']}
-              placeholder="Hora de início"
-              onChange={(e) => setHrInicioFeriados(e.target.value)}
-              placeholder="Hora de início"
-            ></InputMask>
-          </BoxInput3>
-          <BoxInput3>
-            <h3 id="hTerminT">*Horário termino:</h3>
-            <InputMask
-              id="hTermino"
-              type="text"
-              name="time"
-              mask={['99:99']}
-              onChange={(e) => setHrTerminoFeriados(e.target.value)}
-              placeholder=" Hora de término"
-            ></InputMask>
-          </BoxInput3>
-        </BoxForm>
+          <BoxForm>
+            <CheckService>
+              <label>
+                <input
+                  type="radio"
+                  id="baba"
+                  name="service"
+                  onChange={() =>
+                    document.getElementById('baba').checked
+                      ? setTipoServico('Babá')
+                      : null
+                  }
+                />
+                <span>Babá</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  id="diarista"
+                  name="service"
+                  onChange={() =>
+                    document.getElementById('diarista').checked
+                      ? setTipoServico('Diarista')
+                      : null
+                  }
+                />
+                <span> Diarista</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  id="cozinheira"
+                  name="service"
+                  onChange={() =>
+                    document.getElementById('cozinheira').checked
+                      ? setTipoServico('Cozinheira')
+                      : null
+                  }
+                />
+                <span> Cozinheira</span>
+              </label>
+            </CheckService>
+          </BoxForm>
+          <BoxForm>
+            <BoxInput3>
+              <h3>*Horário inicio:</h3>
+              <InputMask
+                type="text"
+                name="time"
+                mask={['99:99']}
+                onChange={(e) => setHrInicio(e.target.value)}
+                placeholder="Hora de início"
+              ></InputMask>
+            </BoxInput3>
+            <BoxInput3>
+              <h3 id="hTerminT">*Horário termino:</h3>
+              <InputMask
+                id="hTermino"
+                type="text"
+                name="time"
+                mask={['99:99']}
+                onChange={(e) => setHrTermino(e.target.value)}
+                placeholder=" Hora de término"
+              ></InputMask>
+            </BoxInput3>
+          </BoxForm>
+          <BoxForm>
+            <CheckSemana>
+              <label>
+                <input
+                  type="checkbox"
+                  id="segunda"
+                  name="semana"
+                  onChange={() =>
+                    document.getElementById('segunda').checked
+                      ? setDtServico((dtServico) => [...dtServico, 'Segunda'])
+                      : null
+                  }
+                />
+                <span> Segunda</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="terca"
+                  name="semana"
+                  onChange={() =>
+                    document.getElementById('terca').checked
+                      ? setDtServico((dtServico) => [...dtServico, 'Terça'])
+                      : null
+                  }
+                />
+                <span> Terça</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="quarta"
+                  name="semana"
+                  onChange={() =>
+                    document.getElementById('quarta').checked
+                      ? setDtServico((dtServico) => [...dtServico, 'Quarta'])
+                      : null
+                  }
+                />
+                <span> Quarta</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="quinta"
+                  name="semana"
+                  onChange={() =>
+                    document.getElementById('quinta').checked
+                      ? setDtServico((dtServico) => [...dtServico, 'Quinta'])
+                      : null
+                  }
+                />
+                <span> Quinta</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="sexta"
+                  name="semana"
+                  onChange={() =>
+                    document.getElementById('sexta').checked
+                      ? setDtServico((dtServico) => [...dtServico, 'Sexta'])
+                      : null
+                  }
+                />
+                <span> Sexta</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="sabado"
+                  name="semana"
+                  onChange={() =>
+                    document.getElementById('sabado').checked
+                      ? setDtServico((dtServico) => [...dtServico, 'Sábado'])
+                      : null
+                  }
+                />
+                <span> Sabádo</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="domingo"
+                  name="semana"
+                  onChange={() =>
+                    document.getElementById('domingo').checked
+                      ? setDtServico((dtServico) => [...dtServico, 'Domingo'])
+                      : null
+                  }
+                />
+                <span> Domingo</span>
+              </label>
+            </CheckSemana>
+          </BoxForm>
+          <BoxForm1>
+            <Title id="titulo5">
+              <h3>Trabalha em feriados ?</h3>
+            </Title>
+            <CheckFeriado>
+              <label>
+                <input
+                  type="radio"
+                  id="simTrabFeriados"
+                  onChange={() =>
+                    document.getElementById('simTrabFeriados').checked
+                      ? setTrabFeriados('Sim')
+                      : null
+                  }
+                  name="feriado"
+                />
+                <span>Sim</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  id="naoTrabFeriados"
+                  onChange={() =>
+                    document.getElementById('naoTrabFeriados').checked
+                      ? setTrabFeriados('Não')
+                      : null
+                  }
+                  name="feriado"
+                />
+                <span>Não</span>
+              </label>
+            </CheckFeriado>
+          </BoxForm1>
+          <BoxForm>
+            <BoxInput3>
+              <h3>*Horário inicio:</h3>
+              <InputMask
+                type="text"
+                name="time"
+                mask={['99:99']}
+                placeholder="Hora de início"
+                onChange={(e) => setHrInicioFeriados(e.target.value)}
+              ></InputMask>
+            </BoxInput3>
+            <BoxInput3>
+              <h3 id="hTerminT">*Horário termino:</h3>
+              <InputMask
+                id="hTermino"
+                type="text"
+                name="time"
+                mask={['99:99']}
+                onChange={(e) => setHrTerminoFeriados(e.target.value)}
+                placeholder=" Hora de término"
+              ></InputMask>
+            </BoxInput3>
+          </BoxForm>
         </div>
         <Title>
           <h3 id="titulo3">Termo de Responsabilidade</h3>
