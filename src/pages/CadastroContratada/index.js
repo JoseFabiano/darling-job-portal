@@ -82,7 +82,7 @@ export const CadastroContratada = (props) => {
     e.preventDefault();
 
     api
-      .post('http://localhost:8080/usuarios', {
+      .post('http://34.235.26.14:8080/usuarios', {
         email: props.email,
         nome: props.nome,
         cpf: cpfDigitado,

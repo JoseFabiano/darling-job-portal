@@ -34,19 +34,21 @@ export const LoginContratado = () => {
 
   async function loginContratado() {
     try {
-      api.get('/usuarios/autenticar', {
-        nome: nome,
-        senha: senha
+      api
+        .post('/usuarios/autenticar', {
+          nome: nome,
+          senha: senha,
         })
-      .then((resposta) => {
-        alert('Login feito!');
-      })
-      .catch((erro) => {
-        alert('Erro ao logar!');
-      });
-    } catch {
-
-    }
+        .then((resposta) => {
+          console.log(resposta);
+          handler();
+          alert('Login feito!');
+        })
+        .catch((erro) => {
+          console.log(erro);
+          alert('Erro ao logar!');
+        });
+    } catch {}
   }
 
   return (
@@ -58,8 +60,8 @@ export const LoginContratado = () => {
         </BoxLine>
         <Box>
           <BoxGeral>
-          <BoxCadastro>
-          <BoxSeta>
+            <BoxCadastro>
+              <BoxSeta>
                 <Link to="/" style={{ textDecoration: 'none' }}>
                   <img src="seta.svg" alt="" id="seta" />{' '}
                   <h1 style={{ color: 'black' }}>Voltar</h1>
@@ -94,9 +96,7 @@ export const LoginContratado = () => {
                     placeholder=""
                   ></input>
                 </BoxInput>
-                <button onClick={(e) => loginContratado()}>
-                  Entrar
-                </button>
+                <button onClick={(e) => loginContratado()}>Entrar</button>
               </BoxForm1>
             </BoxLogin>
           </BoxGeral>

@@ -23,7 +23,7 @@ export const BuscaCozinheira = (props) => {
   useEffect(() => {
     async function buscarServico() {
       const { data } = await api.get(
-        `http://localhost:8080/profissional/buscar-servico/${cozinheira}`
+        `http://34.235.26.14:8080/profissional/buscar-servico/${cozinheira}`
       );
       SetUsuarioBuscado(data);
       console.log(data);
@@ -44,22 +44,24 @@ export const BuscaCozinheira = (props) => {
         </DivTexto>
         <DivGeral>
           <DivContainer>
-          <DivPerfil>
-            {usuarioBuscado.map((babas, index) => {
-              return (
-                <>
-                  <Profissionais
-                    idContratado={babas.idContratado}
-                    nome={babas.nome}
-                    dataNascimento={
-                      data -
-                      parseInt(babas.dataNascimento.toString().substring(6, 10))
-                    }
-                    tipoServico={babas.tipoServico}
-                  />
-                </>
-              );
-            })}
+            <DivPerfil>
+              {usuarioBuscado.map((babas, index) => {
+                return (
+                  <>
+                    <Profissionais
+                      idContratado={babas.idContratado}
+                      nome={babas.nome}
+                      dataNascimento={
+                        data -
+                        parseInt(
+                          babas.dataNascimento.toString().substring(6, 10)
+                        )
+                      }
+                      tipoServico={babas.tipoServico}
+                    />
+                  </>
+                );
+              })}
             </DivPerfil>
           </DivContainer>
         </DivGeral>
